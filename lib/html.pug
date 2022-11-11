@@ -1,0 +1,82 @@
+.swiper_container_card(style='height: auto;width: 100%')
+  if randomenable
+    #bannerGroup
+      #random
+        #random-banner
+          canvas#peoplecanvas
+        a#random-hover(style='width:100%;height:auto;', href='javascript:toRandomPost()', rel='external nofollow noreferrer', one-link-mark='yes')
+          i.fa.fa-paper-plane(style='margin-left:10px')
+          div(style='margin-left:10px') 随便逛逛
+            i.fa-solid.fa-arrow-right(style='margin-left:10px')
+      .tagGroup
+        if pjaxenable
+          each item in tag
+            .tagItem(style=`box-shadow:${item.shadow}`)
+              a.tagButton(onclick=`pjax.loadUrl("${item.path}");` href='javascript:void(0);' class=`${item.class}`)
+                span.tagButtonText=item.name
+                i(class=`${item.icon}`)
+        else 
+          each item in tag
+            .tagItem(style=`box-shadow: ${item.shadow}`)
+              a.tagButton(href=item.path class=`${item.class}`)
+                span.tagButtonText=item.name
+                i(class=`${item.icon}`)
+  //- 文章容器
+  #swiper_container_blog
+    #swiper_container.blog-slider.swiper-container-fade.swiper-container-horizontal
+      .blog-slider__wrp.swiper-wrapper(style='transition-duration: 0ms;')
+        //- 文章卡片
+        if pjaxenable
+          each item in swiper_list
+            .blog-slider__item.swiper-slide(style='width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;')
+              a.blog-slider__img(onclick=`pjax.loadUrl("` + item.path + `");` href='javascript:void(0);'    title=item.title)
+                img(width='48' height='48'  src=item.cover alt='图片' onerror=`this.src=` + error_img + `; this.onerror = null;`)
+              .blog-slider__content
+                if (timemode === 'updated' )
+                  span.blog-slider__code= item.updated.format('YYYY-MM-DD')
+                else
+                  span.blog-slider__code= item.date.format('YYYY-MM-DD')
+                a.blog-slider__title(onclick=`pjax.loadUrl("` + item.path + `");` href='javascript:void(0);'   alt='')= item.title
+                .blog-slider__text= item.description ? item.description : default_descr
+                a.blog-slider__button(onclick=`pjax.loadUrl("` + item.path + `");` href='javascript:void(0);'    alt='') 详情       
+        else
+          each item in swiper_list
+            .blog-slider__item.swiper-slide(style='width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;')
+              a.blog-slider__img(href=item.path title=item.title)
+                img(width='48' height='48'  src=item.cover onerror=`this.src=` + error_img + `; this.onerror = null;` alt='图片')
+              .blog-slider__content
+                if (timemode === 'updated' )
+                  span.blog-slider__code= item.updated.format('YYYY-MM-DD')
+                else
+                  span.blog-slider__code= item.date.format('YYYY-MM-DD')
+                a.blog-slider__title(href=item.path, alt='')= item.title
+                .blog-slider__text= item.description ? item.description : default_descr
+                a.blog-slider__button(href=item.path, alt='', data-pjax-state) 详情   
+      //- 轮播图组件
+      .blog-slider__pagination.swiper-pagination-clickable.swiper-pagination-bullets
+
+    if pjaxenable
+      #topGroup
+        .topGroup
+          each item in top_group_list
+            .top-group-list-item
+              .post_cover.left_radius
+                a(onclick=`pjax.loadUrl("` + item.path + `");` href='javascript:void(0);' alt='', title=item.title, data-pjax-state=true)
+                  span.top-group-text 荐
+                  img.post_bg(alt=item.title, src=item.cover, onerror=`this.src=` + error_img + `; this.onerror = null;`)
+              .top-group-info
+                a.article-title(onclick=`pjax.loadUrl("` + item.path + `");` href='javascript:void(0);'    alt='', title=item.title, data-pjax-state)=item.title
+          .top-group-list-none
+          .top-group-list-none
+          .top-group-list-none
+    else
+      #topGroup
+        .topGroup
+          each item in top_group_list
+            .top-group-list-item
+              .post_cover.left_radius
+                a(href=item.path, title=item.title)
+                  span.top-group-text 荐
+                  img.post_bg(alt=item.title, src=item.cover, onerror=`this.src=` + error_img + `; this.onerror = null;`)
+              .top-group-info
+                a.article-title(href=item.path, alt='', title=item.title)=item.title
