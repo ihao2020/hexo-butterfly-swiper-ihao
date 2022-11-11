@@ -1,6 +1,6 @@
 # hexo-butterfly-swiper-ihao
 
-给`hexo-theme-butterfly`添加 [首页轮播图](https://akilar.top/posts/8e1264d1/)
+参考：给`hexo-theme-butterfly`添加 [首页轮播图](https://akilar.top/posts/8e1264d1/)
 
 # 安装
 
@@ -23,19 +23,19 @@
         type: id
         name: home_top
         index: 1
-      category:
+      tag:
         - name: 必看精选
-          path: /categories/必看精选/
+          path: /tags/必看/
           shadow: var(--ihao-shadow-blue)
           class: blue
           icon: fas fa-dove
-        - name: 大学
-          path: /categories/大学/
+        - name: 热门文章
+          path: /tags/热门/
           shadow: var(--ihao-shadow-red)
           class: red
           icon: fas fa-burn
-        - name: 生活
-          path: /categories/生活/
+        - name: 实用教程
+          path: /tags/教程/
           shadow: var(--ihao-shadow-green)
           class: green
           icon: fas fa-book
@@ -46,7 +46,7 @@
       custom_js: https://cdn.cbd.int/hexo-butterfly-swiper-ihao/lib/swiper_init.js # swiper初始化方法
       gsap_js: https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/gsap/3.9.1/gsap.min.js
       people_js: https://npm.elemecdn.com/hexo-butterfly-swiper-ihao/lib/people.min.js
-      categorygroup_css: https://cdn.cbd.int/hexo-butterfly-swiper-ihao/lib/categoryGroup.css
+      taggroup_css: https://cdn.cbd.int/hexo-butterfly-swiper-ihao/lib/tagGroup.css
   ```
 3. 参数释义
 
@@ -70,7 +70,7 @@
   |custom_js|url|【可选】swiper初始化方法|
   |gsap_js|url|【可选】gsap_js依赖|
   |people_js|url|【可选】随机逛逛js|
-  |categorygroup_css|url|【可选】分类类别css|
+  |taggroup_css|url|【可选】标签css|
 
 4. 使用方法
   在文章的`front_matter`中添加`swiper_index`配置项控制轮播图, `top_group_index`控制右侧文章磁贴。
